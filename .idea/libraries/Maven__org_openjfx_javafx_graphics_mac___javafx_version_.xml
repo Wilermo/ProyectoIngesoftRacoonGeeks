@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.openjfx:javafx-graphics:mac:${javafx.version}">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/${javafx.version}/javafx-graphics-${javafx.version}-mac.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/${javafx.version}/javafx-graphics-${javafx.version}-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/${javafx.version}/javafx-graphics-${javafx.version}-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
