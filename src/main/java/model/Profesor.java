@@ -12,22 +12,26 @@ import java.util.UUID;
 @XmlRootElement
 public class Profesor extends Usuario {
 
-    private String carreraProfe;
     private Long cedulaProfe;
-    private TipoProfesor tipoProfesor;
-    private TipoGeneral tipo;
     private Map<UUID, Curso> cursosPertenecenAProfesor = new HashMap<>();
 
     public Profesor() {
     }
 
-    public Profesor(String usuario, String contrasenna, String nombre, String correo, String carreraProfe, Long cedulaProfe, TipoProfesor tipoProfesor, TipoGeneral tipo, Map<UUID, Curso> listaCursosProfesor) {
+    public Profesor(String usuario, String contrasenna, String nombre, String correo, Long cedulaProfe, Map<UUID, Curso> listaCursosProfesor) {
         super(usuario, contrasenna, nombre, correo);
-        this.carreraProfe = carreraProfe;
         this.cedulaProfe = cedulaProfe;
-        this.tipoProfesor = tipoProfesor;
-        this.tipo = tipo;
         this.cursosPertenecenAProfesor = listaCursosProfesor;
+    }
+
+    public Profesor(String usuario, String contrasenna, String nombre, String correo, Long cedulaProfe) {
+        super(usuario, contrasenna, nombre, correo);
+        this.cedulaProfe = cedulaProfe;
+    }
+
+    public Profesor(String usuario, String nombre, String correo, Long cedulaProfe) {
+        super(usuario, nombre, correo);
+        this.cedulaProfe = cedulaProfe;
     }
 
     public Long getCedulaProfe() {
@@ -36,14 +40,7 @@ public class Profesor extends Usuario {
     public void setCedulaProfe(Long cedulaProfe) {
         this.cedulaProfe = cedulaProfe;
     }
-    public TipoProfesor getTipoProfesor() {
-        return tipoProfesor;
-    }
-    public void setTipoProfesor(TipoProfesor tipoProfesor) {
-        this.tipoProfesor = tipoProfesor;
-    }
-    public TipoGeneral getTipo() { return tipo; }
-    public void setTipo(TipoGeneral tipo) { this.tipo = tipo; }
+
     public Map<UUID, Curso> getCursosPertenecenAProfesor() {
         return cursosPertenecenAProfesor;
     }
@@ -51,12 +48,13 @@ public class Profesor extends Usuario {
         this.cursosPertenecenAProfesor = cursosPertenecenAProfesor;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Profesor{" +
                 "nombreProfe='" + super.getNombre() + '\'' +
                 "CorreoProfe='" + super.getCorreo() + '\'' +
                 ", listaCursosProfesor=" + this.getCursosPertenecenAProfesor() +
                 '}';
-    }
+    }*/
+
 }

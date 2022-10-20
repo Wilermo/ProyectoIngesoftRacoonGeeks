@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="746.0" style="-fx-background-color: E4F8FA;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PantallaEstudianteMonitorController">
+   <children>
+      <SplitPane dividerPositions="0.4359673024523161" prefHeight="456.0" prefWidth="746.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="242.0">
+               <children>
+                  <TableView fx:id="tablaCursosMoni" onMouseClicked="#llenarCamposEnMonitor" prefHeight="369.0" prefWidth="317.0">
+                     <placeholder>
+                        <Label text="Oprima el botón Ver cursos a los que pertence" />
+                     </placeholder>
+                     <columns>
+                        <TableColumn fx:id="columnaID" prefWidth="104.0" text="ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="IdCurso" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="columnaNombre" prefWidth="155.0" text="Nombre">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="NombreCurso" />
+                           </cellValueFactory>
+                        </TableColumn>
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="6.0" prefHeight="21.0" prefWidth="171.0" text="Información personal" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="9.0" layoutY="94.0" prefHeight="120.0" prefWidth="397.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="167.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Nombre usuario" />
+                        <Label text="Nombres" GridPane.rowIndex="1" />
+                        <Label text="Correo" GridPane.rowIndex="2" />
+                        <Label text="Número de identificación" GridPane.rowIndex="3" />
+                        <Label fx:id="usuarioMoni" text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="numIDMoni" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="correoMoni" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="nombreMoni" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="6.0" layoutY="164.0" prefHeight="21.0" prefWidth="171.0" text="Información del curso">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="9.0" layoutY="191.0" prefHeight="60.0" prefWidth="397.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="184.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="213.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="ID" />
+                        <Label fx:id="numIDCursoMoni" text="Label" GridPane.columnIndex="1" />
+                        <Label text="Nombre" GridPane.rowIndex="1" />
+                        <Label fx:id="nombreCursoMoni" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <HBox layoutX="6.0" layoutY="332.0" prefHeight="25.0" prefWidth="397.0" spacing="14.0">
+                     <children>
+                        <Button fx:id="btnGestionarTareas" disable="true" mnemonicParsing="false" onAction="#gestionarTareas" text="Gestionar tareas" />
+                        <Button fx:id="btnGestionarContenidos" disable="true" mnemonicParsing="false" onAction="#gestionarContenidos" text="Gestionar contenidos" />
+                        <Button fx:id="btnVerEstudiantes" disable="true" mnemonicParsing="false" onAction="#renderWindowEstudiante" text="Ver lista de estudiantes" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <Button fx:id="btnCerrarSesionMonitor" layoutX="653.0" layoutY="16.0" mnemonicParsing="false" onAction="#cerrarSesionMonitor" text="Cerrar Sesión" />
+      <Label layoutX="182.0" layoutY="11.0" text="Chalkboard - Bienvenido monitor">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="639.0" layoutY="431.0" text="Chalkboard® 2021" />
+      <MenuBar layoutX="6.0" layoutY="426.0" prefHeight="25.0" prefWidth="59.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Button fx:id="btnVerCursos" layoutX="144.0" layoutY="426.0" mnemonicParsing="false" onAction="#renderWindowCursos" text="Ver cursos a los que pertenece" />
+      <Label fx:id="labelUsername" layoutX="14.0" layoutY="20.0" text="Username" />
+   </children>
+   <padding>
+      <Insets bottom="35.0" left="5.0" right="5.0" top="50.0" />
+   </padding>
+</AnchorPane>

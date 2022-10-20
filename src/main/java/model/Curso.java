@@ -1,4 +1,6 @@
 package model;
+import interfaceProgram.IAsignacion;
+
 import java.util.*;
 
 
@@ -8,12 +10,18 @@ public class Curso {
     private Map <String, Profesor> profesoresPertenecenCurso =new HashMap<>();
     private Map <String, Estudiante> estudiantesPertenecenCurso =new HashMap<>();
     private Map <String,Monitor> monitoresCurso=new HashMap<>();
+    private Map <UUID, IAsignacion> asignacionesCurso=new HashMap<>();
 
     public Curso(String nombreCurso, Map<String, Profesor> profesoresCurso, Map<String, Estudiante> estudiantesCurso){
         this.idCurso = UUID.randomUUID();
         this.nombreCurso = nombreCurso;
         this.profesoresPertenecenCurso = profesoresCurso;
         this.estudiantesPertenecenCurso = estudiantesCurso;
+    }
+
+    public Curso(String nombreCurso){
+        this.idCurso = UUID.randomUUID();
+        this.nombreCurso = nombreCurso;
     }
 
     public Curso(){}
@@ -26,8 +34,18 @@ public class Curso {
         this.monitoresCurso = monitoresCurso;
     }
 
-    public void setProfesoresPertenecenCurso(Map newProfesoresCurso){
-        this.profesoresPertenecenCurso =newProfesoresCurso;
+
+    public void setProfesoresPertenecenCurso(Map<String, Profesor> profesoresPertenecenCurso) {
+        this.profesoresPertenecenCurso = profesoresPertenecenCurso;
+    }
+
+
+    public Map<UUID, IAsignacion> getAsignacionesCurso() {
+        return asignacionesCurso;
+    }
+
+    public void setAsignacionesCurso(Map<UUID, IAsignacion> asignacionesCurso) {
+        this.asignacionesCurso = asignacionesCurso;
     }
 
     public Map<String,Profesor> getProfesoresPertenecenCurso(){
@@ -66,7 +84,7 @@ public class Curso {
         return this.nombreCurso;
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "Curso {" +
                 "|| Nombre Curso: '" + this.getNombreCurso() + '\'' +
@@ -74,6 +92,6 @@ public class Curso {
                 "|| Profesores curso:'" + this.getProfesoresPertenecenCurso() + '\'' +
                 '}';
     }
-
+*/
 
 }

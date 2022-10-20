@@ -1,5 +1,6 @@
 package model;
 
+
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -13,16 +14,20 @@ import java.util.UUID;
 public class Estudiante extends Usuario {
     private String carreraEstud;
     private Long documentoEstud;
-    private TipoGeneral tipo;
     private Map<UUID, Curso> cursosPertenecenAEstudiante = new HashMap<>();
 
     public Estudiante(){}
-    public Estudiante(String usuario, String contrasenna, String nombre, String correo, String carreraEstud, Long documentoEstud, TipoGeneral tipo, Map<UUID, Curso> listaCursosEstudiante) {
+    public Estudiante(String usuario, String contrasenna, String nombre, String correo, String carreraEstud, Long documentoEstud,  Map<UUID, Curso> listaCursosEstudiante) {
         super(usuario, contrasenna, nombre, correo);
         this.carreraEstud = carreraEstud;
         this.documentoEstud = documentoEstud;
-        this.tipo = tipo;
         this.cursosPertenecenAEstudiante = listaCursosEstudiante;
+    }
+
+    public Estudiante(String usuario, String contrasenna, String nombre, String correo, String carreraEstud, Long documentoEstud) {
+        super(usuario, contrasenna, nombre, correo);
+        this.carreraEstud = carreraEstud;
+        this.documentoEstud = documentoEstud;
     }
 
     public String getCarreraEstud() {

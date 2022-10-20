@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -23,13 +24,23 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <TableView layoutX="20.0" layoutY="101.0" prefHeight="338.0" prefWidth="314.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tablaProfesores" layoutX="20.0" layoutY="101.0" onMouseClicked="#llenarCamposProfesor" prefHeight="338.0" prefWidth="314.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="ID" />
-                                <TableColumn prefWidth="75.0" text="Nombres" />
-                                <TableColumn prefWidth="75.0" text="Apellidos" />
-                                <TableColumn prefWidth="72.0" text="Carrera" />
-                                <TableColumn prefWidth="61.0" text="Correo" />
+                                <TableColumn fx:id="col_IDProfesor" prefWidth="75.0" text="ID">
+                                    <cellValueFactory>
+                                        <javafx.scene.control.cell.PropertyValueFactory property="Usuario" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="col_NombreProfesor" prefWidth="75.0" text="Nombre">
+                                <cellValueFactory>
+                                    <javafx.scene.control.cell.PropertyValueFactory property="Nombre" />
+                                </cellValueFactory>
+                            </TableColumn>
+                                <TableColumn fx:id="col_CorreoProfesor" prefWidth="61.0" text="Correo">
+                                    <cellValueFactory>
+                                        <javafx.scene.control.cell.PropertyValueFactory property="Correo" />
+                                    </cellValueFactory>
+                                </TableColumn>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -54,28 +65,22 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <Label text="Nombre usuario" />
                                 <Label text="Nombres" GridPane.rowIndex="1" />
                                 <Label text="Correo" GridPane.rowIndex="2" />
-                                <Label text="Carrera" GridPane.rowIndex="3" />
-                                <Label text="Número de identificación" GridPane.rowIndex="4" />
-                                <Label text="Tipo de profesor" GridPane.rowIndex="5" />
+                                <Label text="Número de identificación" GridPane.rowIndex="3" />
                                 <Label fx:id="usuarioProfe" text="Label" GridPane.columnIndex="1" />
-                                <Label fx:id="tipoProfe" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Label fx:id="numIDProfe" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Label fx:id="carreraProfe" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label fx:id="numIDProfe" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <Label fx:id="correoProfe" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                 <Label fx:id="nombreProfe" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                             </children>
                         </GridPane>
                         <HBox layoutX="123.0" layoutY="418.0" prefHeight="25.0" prefWidth="407.0" spacing="85.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                             <children>
-                                <Button fx:id="btnAsignarProfeACurso" mnemonicParsing="false" onAction="#asignarProfeACurso" prefHeight="25.0" prefWidth="164.0" text="Asignar profesor al curso" />
-                                <Button fx:id="btnEliminarProfeDeCurso" mnemonicParsing="false" onAction="#eliminarProfeDeCurso" text="Eliminar profesor del curso" />
+                                <Button fx:id="btnAsignarProfeACurso" disable="true" mnemonicParsing="false" onAction="#asignarProfeACurso" prefHeight="25.0" prefWidth="164.0" text="Asignar profesor al curso" />
+                                <Button fx:id="btnEliminarProfeDeCurso" disable="true" mnemonicParsing="false" onAction="#eliminarProfeDeCurso" text="Eliminar profesor del curso" />
                             </children>
                         </HBox>
                         <Label layoutX="28.0" layoutY="240.0" text="Búsqueda de profesor a asignar" AnchorPane.leftAnchor="5.0">
@@ -84,14 +89,14 @@
                             </font>
                         </Label>
                         <Label layoutX="12.0" layoutY="280.0" text="Nombre de usuario" AnchorPane.leftAnchor="5.0" />
-                        <TextField layoutX="187.0" layoutY="270.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="75.0" />
+                        <TextField fx:id="txt_BuscarUsuarioProfesor" layoutX="187.0" layoutY="270.0" prefHeight="25.0" prefWidth="155.0" AnchorPane.rightAnchor="75.0" />
                         <Button fx:id="btnBuscarProfeAAsignar" layoutX="308.0" layoutY="268.0" mnemonicParsing="false" onAction="#buscarProfeAAsignar" text="Buscar" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="270.0" />
                     </children>
                 </AnchorPane>
             </items>
         </SplitPane>
         <Button fx:id="btnRegresarCursoPrincipal" layoutX="597.0" layoutY="16.0" mnemonicParsing="false" onAction="#regresarCursoPrincipal" text="Regresar curso principal" />
-        <Label layoutX="5.0" layoutY="11.0" text="Chalkboard - Gestión Curso-Profesor">
+        <Label layoutX="156.0" layoutY="11.0" text="Chalkboard - Gestión Curso-Profesor">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -106,6 +111,9 @@
                 </Menu>
             </menus>
         </MenuBar>
+      <Button fx:id="btnVerProfesoresCurso" layoutX="83.0" layoutY="426.0" mnemonicParsing="false" onAction="#renderProfesoresCurso" text="Ver profesores del curso" />
+      <Button fx:id="btnVerTodosProfesores" layoutX="238.0" layoutY="426.0" mnemonicParsing="false" onAction="#renderTodosProfesores" text="Ver todos los profesores " />
+      <Label fx:id="labelUsername" layoutX="22.0" layoutY="20.0" text="Username" />
     </children>
     <padding>
         <Insets bottom="35.0" left="5.0" right="5.0" top="50.0" />

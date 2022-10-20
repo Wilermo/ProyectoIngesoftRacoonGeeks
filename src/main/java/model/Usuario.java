@@ -8,7 +8,7 @@ import jakarta.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({Estudiante.class,Profesor.class,Administrativo.class})
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-public class Usuario {
+public class Usuario  {
     private String usuario;
     private String contrasenna;
     private String nombre;
@@ -19,6 +19,13 @@ public class Usuario {
     }
 
     public Usuario() {
+    }
+
+
+    public Usuario(String usuario, String nombre, String correo) {
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.correo = correo;
     }
 
     public void setUsuario(String usuario) {

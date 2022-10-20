@@ -1,0 +1,122 @@
+<Curso>
+8f2b4d77-7bd0-4243-912f-b5eb0bfc7206
+Vectorial
+<MonitoresCurso>
+</MonitoresCurso>
+<EstudiantesCurso>
+Marisol123
+</EstudiantesCurso>
+<ProfesoresCurso>
+PipeA
+</ProfesoresCurso>
+<Asignaciones>
+<Contenido>
+Parcial 1
+Pepito tiene una manzana.
+7ddcc425-6f4c-4c58-9470-3ff207683361
+</Contenido>
+<Tarea>
+das
+dasd
+2329d06b-beee-47fb-a9a5-bf90f5e69c0c
+4.0
+2021-11-19 00:00:00
+2021-11-25 00:00:00
+<Respuestas>
+xd
+Sebs
+xd
+0.0
+</Respuestas>
+</Tarea>
+<Contenido>
+def
+defff
+899a6b05-7d27-4637-85b4-4b131843cd55
+</Contenido>
+</Asignaciones>
+</Curso>
+<Curso>
+560a8451-a29c-41d4-a716-544676554400
+Ingesoft
+<MonitoresCurso>
+angelita123
+</MonitoresCurso>
+<EstudiantesCurso>
+pipe
+angelita123
+</EstudiantesCurso>
+<ProfesoresCurso>
+Andres
+</ProfesoresCurso>
+<Asignaciones>
+<Tarea>
+Entrega
+Ninguna
+dfdae083-4810-4b0e-bf8d-80f879601053
+5.0
+2021-11-17 00:00:00
+2021-11-19 00:00:00
+<Respuestas>
+commnet
+Willy123
+Content
+6.0
+</Respuestas>
+</Tarea>
+<Contenido>
+PruebasDiapositias
+Ver diapositivas
+e952ef8b-785e-4ced-9434-142030788fed
+</Contenido>
+</Asignaciones>
+</Curso>
+<Curso>
+9958b4d1-bfa4-442e-a162-e266085f17fe
+Comunicaciones y redes
+<MonitoresCurso>
+</MonitoresCurso>
+<EstudiantesCurso>
+</EstudiantesCurso>
+<ProfesoresCurso>
+</ProfesoresCurso>
+<Asignaciones>
+</Asignaciones>
+</Curso>
+<Curso>
+31962ac2-f330-47b2-89e0-d4d228f035cd
+Programación Orientada a Objetos
+<MonitoresCurso>
+</MonitoresCurso>
+<EstudiantesCurso>
+Sebs
+</EstudiantesCurso>
+<ProfesoresCurso>
+Mau123
+</ProfesoresCurso>
+<Asignaciones>
+<Contenido>
+Parcial1
+Pepito tiene una manzana.
+7d3efcec-7fec-472f-9864-dd49df9d4836
+</Contenido>
+<Tarea>
+Tarea
+t
+14236c49-9936-43d6-842d-05e8915a3e7e
+50.0
+2021-12-01 00:00:00
+2021-12-02 00:00:00
+<Respuestas>
+Para la ticholin más rica 😍
+Sebs
+༼ つ ◕_◕ ༽つ
+0.0
+profe pongame 100
+angelita123
+linea1&%!>linea2&%!>linea3
+0.0
+</Respuestas>
+</Tarea>
+</Asignaciones>
+</Curso>

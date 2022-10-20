@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="746.0" style="-fx-background-color: E4F8FA;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PantallaEstudianteRegularTareaController">
+   <children>
+      <SplitPane dividerPositions="0.4359673024523161" prefHeight="456.0" prefWidth="746.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="369.0" prefWidth="242.0">
+               <children>
+                  <TableView fx:id="tablaTareas" onMouseClicked="#llenarCamposEnTareaCurso" prefHeight="369.0" prefWidth="317.0">
+                     <placeholder>
+                        <Label text="Oprima el botón Ver tareas" />
+                     </placeholder>
+                     <columns>
+                        <TableColumn fx:id="columnaID" prefWidth="104.0" text="ID">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="IdAsignacion" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="columnaTitulo" prefWidth="155.0" text="Titulo">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="Titulo" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="columnaFechaInicio" prefWidth="155.0" text="Fecha inicio">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="FechaStringIncio" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="columnaFechaCierre" prefWidth="155.0" text="Fecha cierre">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="FechaStringCierre" />
+                           </cellValueFactory>
+                        </TableColumn>
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="412.0">
+               <children>
+                  <Label layoutX="6.0" layoutY="6.0" prefHeight="21.0" prefWidth="171.0" text="Información de la tarea" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="9.0" layoutY="94.0" prefHeight="135.0" prefWidth="397.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="151.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="235.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Titulo" />
+                        <Label text="Instrucciones" GridPane.rowIndex="1" />
+                        <Label text="Fecha cierre" GridPane.rowIndex="3" />
+                        <Label fx:id="fechaCierreTarea" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="instruccionesTarea" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="tituloTarea" text="Label" GridPane.columnIndex="1" />
+                        <Label text="Fecha inicio" GridPane.rowIndex="2" />
+                        <Label fx:id="fechaInicioTarea" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Calificación máxima" GridPane.rowIndex="4" />
+                        <Label fx:id="notaMaxTarea" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <HBox layoutX="6.0" layoutY="332.0" prefHeight="25.0" prefWidth="397.0" spacing="12.0">
+                     <children>
+                        <Button fx:id="btnVerRta" mnemonicParsing="false" onAction="#verRta" prefHeight="25.0" prefWidth="127.0" text="Ver respuesta" />
+                        <Button fx:id="btnSubirRta" disable="true" mnemonicParsing="false" onAction="#subirRta" prefHeight="25.0" prefWidth="132.0" text="Subir respuesta" />
+                        <Button fx:id="btnEliminarRta" disable="true" mnemonicParsing="false" onAction="#eliminarRta" prefHeight="25.0" prefWidth="118.0" text="Eliminar respuesta" />
+                     </children>
+                  </HBox>
+                  <GridPane fx:id="camposRespuesta" layoutX="9.0" layoutY="189.0" prefHeight="135.0" prefWidth="397.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="151.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="235.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="66.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="67.0" minHeight="1.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Usuario de Estudiante" />
+                        <Label text="Comentario" GridPane.rowIndex="1" />
+                        <Label text="Contenido Respuesta" GridPane.rowIndex="2" />
+                        <TextField fx:id="comentario" prefHeight="16.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextArea fx:id="contenidoRespuesta" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="usuario" prefHeight="25.0" prefWidth="240.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="6.0" layoutY="164.0" prefHeight="21.0" prefWidth="171.0" text="Respuesta">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+      <Button fx:id="btnCerrarSeionEstu" layoutX="653.0" layoutY="16.0" mnemonicParsing="false" onAction="#cerrarSeionEstu" text="Cerrar Sesión" />
+      <Label layoutX="206.0" layoutY="11.0" text="Chalkboard - Tareas del curso">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="639.0" layoutY="431.0" text="Chalkboard® 2021" />
+      <MenuBar layoutX="6.0" layoutY="426.0" prefHeight="25.0" prefWidth="59.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label fx:id="labelUsername" layoutX="14.0" layoutY="20.0" text="Username" />
+      <Button fx:id="btnVerTareas" layoutX="225.0" layoutY="425.0" mnemonicParsing="false" onAction="#renderWindowTareas" prefHeight="25.0" prefWidth="101.0" text="Ver tareas" />
+   </children>
+   <padding>
+      <Insets bottom="35.0" left="5.0" right="5.0" top="50.0" />
+   </padding>
+</AnchorPane>

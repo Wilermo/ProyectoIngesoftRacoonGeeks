@@ -1,4 +1,8 @@
 package controller;
+import back.facade.CursoFacade;
+import interfaceProgram.Global.IGlobalController;
+import interfaceProgram.IAsignacion;
+import model.Asignacion;
 import model.Curso;
 import model.Estudiante;
 
@@ -10,6 +14,12 @@ import java.util.UUID;
 
 public class ControlCursos {
 
+
+
+    public ControlCursos (){
+
+    }
+
     private Map<UUID, Curso> listaCursos = new HashMap<>();
 
     public Map<UUID, Curso> getListaCursos() {
@@ -17,6 +27,12 @@ public class ControlCursos {
     }
     public void setListaCursos(Map<UUID, Curso> listaCursos) {
         this.listaCursos = listaCursos;
+    }
+
+    public Curso crearCurso(String nombre){
+        Curso nuevoCurso = new Curso(nombre);
+        insertarCurso(nuevoCurso);
+        return nuevoCurso;
     }
 
     public Curso buscarCurso(UUID id){
@@ -37,19 +53,23 @@ public class ControlCursos {
         }
     }
 
-    public void consultarCurso(){
+    public boolean consultarCurso(){
+        boolean ver = false;
         if(!this.listaCursos.isEmpty()) {
             for (Curso cur : this.listaCursos.values()) {
                 System.out.println(cur.toString());
+                ver = true;
             }
-            return;
         }
         System.out.println("En este momento no hay ningun curso registrado");
+        return ver;
     }
 
     public void modificarCurso(Curso curso, String nuevoNombre){
-        if (buscarCurso(curso.getIdCurso()) != null) {
+        Curso curso2=buscarCurso(curso.getIdCurso());
+        if (curso2 != null) {
             curso.setNombreCurso(nuevoNombre);
+            listaCursos.replace(curso.getIdCurso(),curso2,curso);
         }else{
             System.out.println("El curso ingresado no existe. Por favor, intentelo de nuevo.");
         }
@@ -64,6 +84,13 @@ public class ControlCursos {
         }
         else{
             System.out.println("El curso no existe. Por favor, ingreselo de nuevo.");
+        }
+    }
+
+    public void aniadirTarea(UUID idCurso, IAsignacion asignacion   ){
+        if(asignacion!=null){
+            IGlobalController.controladorGeneral.getCursoFacade().getCursoBusiness().getControlCursos().buscarCurso(idCurso).getAsignacionesCurso().put(asignacion.getIdAsignacion(),asignacion);
+            System.out.println("Tarea Guardada");
         }
     }
 }

@@ -1,6 +1,6 @@
 package view;
 
-import controller.ControladorGeneral;
+import interfaceProgram.Global.IGlobalController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,10 +79,13 @@ public class PantallaAdminGestionCursoEstudiantesController {
     private Button btnVerTodosEstudiantes;
 
     @FXML
+    private Label labelUsername;
+
+    @FXML
     void asignarEstACurso(ActionEvent event) {
         //Estudiante est=tablaEstudiantes.getSelectionModel().getSelectedItem();
-        global.controladorGeneral.asignarCursosAEstudiante(usuarioTemp,idCurso);
-        global.controladorGeneral.asignarEstudiantesACurso(idCurso, usuarioTemp);
+        IGlobalController.controladorGeneral.asignarCursosAEstudiante(usuarioTemp,idCurso);
+        IGlobalController.controladorGeneral.asignarEstudiantesACurso(idCurso, usuarioTemp);
         getTextUsuarioEstudiante.clear();
         AlertUtils.alertInformation("Estudiante Asignado", "Gestión Estudiante", "El estudiante ha sido asignado con éxito");
         renderEstudiantesCurso();
@@ -91,18 +94,17 @@ public class PantallaAdminGestionCursoEstudiantesController {
 
     @FXML
     void buscarEstuAAsignar(ActionEvent event) {
-        if(global.controladorGeneral.getControlEstu().getListaEstudiantes().containsKey(getTextUsuarioEstudiante.getText())) {
-            if(global.controladorGeneral.getControlCursos().getListaCursos().get(idCurso).getEstudiantesPertenecenCurso().containsKey(getTextUsuarioEstudiante.getText())){
+        if(IGlobalController.controladorGeneral.getEstudianteFacade().getEstudianteBusiness().getControladorEstudiante().getListaEstudiantes().containsKey(getTextUsuarioEstudiante.getText())) {
+            if(IGlobalController.controladorGeneral.getCursoFacade().getCursoBusiness().getControlCursos().getListaCursos().get(idCurso).getEstudiantesPertenecenCurso().containsKey(getTextUsuarioEstudiante.getText())){
                 btnEliminarEstDeCurso.setDisable(false);
                 btnAsignarEstACurso.setDisable(true);
             }else {
                 btnEliminarEstDeCurso.setDisable(true);
                 btnAsignarEstACurso.setDisable(false);
             }
-            Estudiante estudiante = global.controladorGeneral.getControlEstu().getListaEstudiantes().get(getTextUsuarioEstudiante.getText());
+            Estudiante estudiante = IGlobalController.controladorGeneral.getEstudianteFacade().getEstudianteBusiness().getControladorEstudiante().getListaEstudiantes().get(getTextUsuarioEstudiante.getText());
             usuarioEstu.setText(estudiante.getUsuario());
             usuarioTemp=estudiante.getUsuario();
-            tipoEstu.setText(String.valueOf(TipoEstudiante.REGULAR));
             numIDEstu.setText(String.valueOf(estudiante.getDocumentoEstud()));
             carreraEstu.setText(estudiante.getCarreraEstud());
             correoEstu.setText(estudiante.getCorreo());
@@ -114,10 +116,10 @@ public class PantallaAdminGestionCursoEstudiantesController {
 
     @FXML
     void eliminarEstDeCurso(ActionEvent event) {
-        global.controladorGeneral.getControlCursos().getListaCursos().get(idCurso).getEstudiantesPertenecenCurso().remove(usuarioTemp);
-        global.controladorGeneral.getControlEstu().getListaEstudiantes().get(usuarioTemp).getCursosPertenecenAEstudiante().remove(idCurso);
+        IGlobalController.controladorGeneral.getCursoFacade().getCursoBusiness().getControlCursos().getListaCursos().get(idCurso).getEstudiantesPertenecenCurso().remove(usuarioTemp);
+        IGlobalController.controladorGeneral.getEstudianteFacade().getEstudianteBusiness().getControladorEstudiante().getListaEstudiantes().get(usuarioTemp).getCursosPertenecenAEstudiante().remove(idCurso);
         getTextUsuarioEstudiante.clear();
-        AlertUtils.alertInformation("Estudiante Eliminado", "Gestión Estudiante", "El estudiante ha sido eliminado con éxito");
+        AlertUtils.alertInformation("Estudiante Eliminado", "Gestión Estudiante", "El estudiante ha sido eliminado del curso con éxito");
         renderEstudiantesCurso();
     }
 
@@ -126,12 +128,11 @@ public class PantallaAdminGestionCursoEstudiantesController {
         Estudiante est=tablaEstudiantes.getSelectionModel().getSelectedItem();
         usuarioEstu.setText(est.getUsuario());
         usuarioTemp=est.getUsuario();
-        tipoEstu.setText(String.valueOf(TipoEstudiante.REGULAR));
         numIDEstu.setText(String.valueOf(est.getDocumentoEstud()));
         carreraEstu.setText(est.getCarreraEstud());
         correoEstu.setText(est.getCorreo());
         nombreEstu.setText(est.getNombre());
-        if(global.controladorGeneral.getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().containsKey(est.getUsuario())){
+        if(IGlobalController.controladorGeneral.getCursoFacade().getCursoBusiness().getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().containsKey(est.getUsuario())){
             btnAsignarEstACurso.setDisable(true);
             btnEliminarEstDeCurso.setDisable(false);
         }else{
@@ -154,17 +155,11 @@ public class PantallaAdminGestionCursoEstudiantesController {
 
     @FXML
     void renderEstudiantesCurso(ActionEvent event) {
+        labelUsername.setText(IGlobalController.controladorGeneral.actualUser.getUsuario());
         clearWindowEstud();
-        for(Estudiante est: global.controladorGeneral.getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().values()){
-            if(est instanceof Monitor){
-                Estudiante estudiante=new Estudiante(est.getUsuario(),est.getContrasenna(),est.getNombre(),est.getCorreo(),est.getCarreraEstud(),est.getDocumentoEstud(), TipoGeneral.ESTUDIANTE,est.getCursosPertenecenAEstudiante());
-                tablaEstudiantes.getItems().add(estudiante);
-            }else{
-                tablaEstudiantes.getItems().add(est);
-            }
-
+        for(Estudiante est: IGlobalController.controladorGeneral.getCursoFacade().getCursoBusiness().getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().values()){
+            tablaEstudiantes.getItems().add(est);
         }
-
         //tablaEstudiantes.getItems().addAll((Estudiante) global.controladorGeneral.getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().values());
     }
 
@@ -175,29 +170,26 @@ public class PantallaAdminGestionCursoEstudiantesController {
 
     @FXML
     void renderTodosEstudiantes(ActionEvent event) {
+        labelUsername.setText(IGlobalController.controladorGeneral.actualUser.getUsuario());
         clearWindowEstud();
-        for(Estudiante est: global.controladorGeneral.getControlEstu().getListaEstudiantes().values()){
-            if(est instanceof Monitor){
-                Estudiante estudiante=new Estudiante(est.getUsuario(),est.getContrasenna(),est.getNombre(),est.getCorreo(),est.getCarreraEstud(),est.getDocumentoEstud(), TipoGeneral.ESTUDIANTE,est.getCursosPertenecenAEstudiante());
-                tablaEstudiantes.getItems().add(estudiante);
-            }else{
-                tablaEstudiantes.getItems().add(est);
-            }
-
+        for(Estudiante est: IGlobalController.controladorGeneral.getEstudianteFacade().getEstudianteBusiness().getControladorEstudiante().getListaEstudiantes().values()){
+            tablaEstudiantes.getItems().add(est);
         }
         //tablaEstudiantes.getItems().addAll((Estudiante) global.controladorGeneral.getControlEstu().getListaEstudiantes().values());
     }
 
     void renderEstudiantesCurso() {
+        labelUsername.setText(IGlobalController.controladorGeneral.actualUser.getUsuario());
         clearWindowEstud();
-        for(Estudiante est: global.controladorGeneral.getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().values()){
-            if(est instanceof Monitor){
-                Estudiante estudiante=new Estudiante(est.getUsuario(),est.getContrasenna(),est.getNombre(),est.getCorreo(),est.getCarreraEstud(),est.getDocumentoEstud(), TipoGeneral.ESTUDIANTE,est.getCursosPertenecenAEstudiante());
-                tablaEstudiantes.getItems().add(estudiante);
-            }else{
+        for(Estudiante est: IGlobalController.controladorGeneral.getCursoFacade().getCursoBusiness().getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().values()){
+            if(est instanceof Monitor) {
+                Estudiante moni=new Estudiante(est.getUsuario(),est.getContrasenna(),est.getNombre(), est.getCorreo(), est.getCarreraEstud(), est.getDocumentoEstud());
+                tablaEstudiantes.getItems().add(moni);
+            }
+            else
+            {
                 tablaEstudiantes.getItems().add(est);
             }
-
         }
 
         //tablaEstudiantes.getItems().addAll((Estudiante) global.controladorGeneral.getControlCursos().buscarCurso(idCurso).getEstudiantesPertenecenCurso().values());

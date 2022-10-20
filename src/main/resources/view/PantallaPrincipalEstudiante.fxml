@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="451.0" style="-fx-background-color: E4F8FA; -fx-border-color: 000000; -fx-border-image-width: 10000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PantallaPrincipalEstudianteController">
+   <children>
+      <AnchorPane layoutY="80.0" prefHeight="239.0" prefWidth="451.0" style="-fx-background-color: E4E5FA;">
+         <children>
+            <Button fx:id="btnEstRegular" layoutX="42.0" layoutY="78.0" mnemonicParsing="false" onAction="#estudianteRegular" prefHeight="119.0" prefWidth="160.0" style="-fx-background-color: A5D7CF; -fx-background-radius: 25;" text="Regular" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="btnCerrarSesionEst" layoutX="150.0" layoutY="167.0" mnemonicParsing="false" onAction="#cerrarSesionEst" prefHeight="49.0" prefWidth="152.0" text="Cerrar Sesión" />
+            <Button fx:id="btnEstMonitor" layoutX="244.0" layoutY="20.0" mnemonicParsing="false" onAction="#estudianteMonitor" prefHeight="119.0" prefWidth="160.0" style="-fx-background-color: AAD7A5; -fx-background-radius: 25;" text="Monitor">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Separator layoutX="223.0" layoutY="92.0" orientation="VERTICAL" prefHeight="139.0" prefWidth="0.0" />
+      <Label layoutX="102.0" prefHeight="83.0" prefWidth="247.0" text="ESTUDIANTE" textAlignment="CENTER">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

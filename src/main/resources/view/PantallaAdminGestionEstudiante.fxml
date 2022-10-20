@@ -9,6 +9,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -22,13 +23,28 @@
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView layoutX="20.0" layoutY="101.0" prefHeight="338.0" prefWidth="314.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tablaEstudiantes" layoutX="20.0" layoutY="101.0" onMouseClicked="#llenarCamposEstu" prefHeight="338.0" prefWidth="314.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="75.0" text="Nombres" />
-                        <TableColumn prefWidth="75.0" text="Apellidos" />
-                        <TableColumn prefWidth="72.0" text="Carrera" />
-                        <TableColumn prefWidth="61.0" text="Correo" />
+                        <TableColumn fx:id="IDEstTabla" prefWidth="75.0" text="ID">
+                        <cellValueFactory>
+                           <javafx.scene.control.cell.PropertyValueFactory property="Usuario" />
+                        </cellValueFactory>
+                     </TableColumn>
+                        <TableColumn fx:id="nombreEstTabla" prefWidth="75.0" text="Nombres">
+                        <cellValueFactory>
+                           <javafx.scene.control.cell.PropertyValueFactory property="Nombre" />
+                        </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="carreraEstTabla" prefWidth="75.0" text="Carrera">
+                        <cellValueFactory>
+                           <javafx.scene.control.cell.PropertyValueFactory property="CarreraEstud" />
+                        </cellValueFactory>
+                     </TableColumn>
+                        <TableColumn fx:id="correoEstTabla" prefWidth="72.0" text="Correo">
+                        <cellValueFactory>
+                           <javafx.scene.control.cell.PropertyValueFactory property="Correo" />
+                        </cellValueFactory>
+                     </TableColumn>
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -38,7 +54,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="29.0" layoutY="6.0" text="Detalles del profesor" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Label layoutX="29.0" layoutY="6.0" text="Detalles del estudiante" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -55,6 +71,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="Nombre usuario" />
@@ -62,23 +79,30 @@
                         <Label text="Correo" GridPane.rowIndex="2" />
                         <Label text="Carrera" GridPane.rowIndex="3" />
                         <Label text="Número de identificación" GridPane.rowIndex="4" />
-                        <Label text="Tipo de profesor" GridPane.rowIndex="5" />
                         <Label fx:id="usuarioEstu" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="tipoEstu" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label fx:id="numIDEstu" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="carreraEstu" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="correoEstu" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="nombreEstu" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Cursos a los que está asociado" GridPane.rowIndex="5" />
+                        <Button fx:id="btnVerCursosDelEstu" disable="true" mnemonicParsing="false" onAction="#cursosDelEstu" prefHeight="25.0" prefWidth="203.0" text="Ver cursos del estudiante" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button fx:id="btnVerCursosDelMonitor" disable="true" mnemonicParsing="false" onAction="#cursosDelMonitor" prefHeight="25.0" prefWidth="203.0" text="Ver cursos del monitor" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="labelCursosMonitoria" text="Cursos en los que da monitoría" visible="false" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
-                  <HBox layoutX="123.0" layoutY="418.0" prefHeight="25.0" prefWidth="205.0" spacing="7.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
+                  <HBox layoutX="123.0" layoutY="418.0" prefHeight="25.0" prefWidth="141.0" spacing="7.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                      <children>
-                        <Button fx:id="btnRegistrarEstu" mnemonicParsing="false" onAction="#registrarEstu" text="Registrar" />
-                        <Button fx:id="btnActualizarEstu" mnemonicParsing="false" onAction="#actualizarEstu" text="Actualizar" />
-                        <Button fx:id="btnEliminarEstu" mnemonicParsing="false" onAction="#eliminarEstu" text="Eliminar" />
+                        <Button fx:id="btnActualizarEstu" disable="true" mnemonicParsing="false" onAction="#actualizarEstu" text="Actualizar" />
+                        <Button fx:id="btnEliminarEstu" disable="true" mnemonicParsing="false" onAction="#eliminarEstu" prefHeight="27.0" prefWidth="65.0" text="Eliminar" />
                      </children>
                   </HBox>
-                  <Button fx:id="btnVerCursosDelEstu" layoutX="4.0" layoutY="340.0" mnemonicParsing="false" onAction="#cursosDelEstu" text="Cursos del Estudiante" />
+                  <Button fx:id="btnRegistrarEstu" layoutX="14.0" layoutY="339.0" mnemonicParsing="false" onAction="#registrarEstu" prefHeight="25.0" prefWidth="225.0" text="Registrar nuevo Estudiante" />
+                  <HBox layoutX="14.0" layoutY="308.0" prefHeight="25.0" prefWidth="372.0">
+                     <children>
+                        <Button fx:id="btnCrearMonitor" disable="true" mnemonicParsing="false" onAction="#convertirAMonitor" prefHeight="25.0" prefWidth="205.0" text="Convertir a Monitor" visible="false" />
+                        <Button fx:id="btnQuitarMonitor" disable="true" mnemonicParsing="false" onAction="#quitarRolMonitor" prefHeight="25.0" prefWidth="204.0" text="Quitar rol de Monitor" visible="false" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
          </items>
@@ -89,7 +113,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="20.0" layoutY="23.0" prefHeight="18.0" prefWidth="141.0" text="Mauren Natalia Rivera Bautista">
+      <Label fx:id="labelUsername" layoutX="20.0" layoutY="23.0" prefHeight="18.0" prefWidth="141.0" text="Username">
          <font>
             <Font size="9.0" />
          </font>
@@ -104,6 +128,8 @@
             </Menu>
          </menus>
       </MenuBar>
+      <Button fx:id="btnVerEst" layoutX="244.0" layoutY="426.0" mnemonicParsing="false" onAction="#renderWindowEst" text="Ver estudiantes" />
+      <Button fx:id="btnVerMonit" layoutX="140.0" layoutY="426.0" mnemonicParsing="false" onAction="#renderWindowMonitor" prefHeight="25.0" prefWidth="96.0" text="Ver monitores" />
    </children>
    <padding>
       <Insets bottom="35.0" left="5.0" right="5.0" top="50.0" />

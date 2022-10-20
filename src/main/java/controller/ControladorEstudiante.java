@@ -1,8 +1,12 @@
 package controller;
 
-import model.Administrativo;
+import back.facade.EstudianteFacade;
+import back.facade.MonitorFacade;
+import interfaceProgram.Global.IGlobalController;
+import javafx.fxml.FXML;
 import model.Estudiante;
 import model.Monitor;
+import model.Profesor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +15,9 @@ public class ControladorEstudiante {
     private Map<String, Estudiante> listaEstudiantes = new HashMap<>();
     private Map<String, Monitor> listaMonitores=new HashMap<>();
 
-    public Map<String, Monitor> getListaMonitores() {
-        return listaMonitores;
+    public ControladorEstudiante() {
     }
-
-    public void setListaMonitores(Map<String, Monitor> listaMonitores) {
-        this.listaMonitores = listaMonitores;
-    }
+    
 
     public Map<String, Estudiante> getListaEstudiantes() {
         return listaEstudiantes;
@@ -42,14 +42,16 @@ public class ControladorEstudiante {
         }
     }
 
-    public void consultarEstudiantes(){
+    public boolean consultarEstudiantes(){
+        boolean ver = false;
         if(!this.listaEstudiantes.isEmpty()) {
             for (Estudiante estudiante : this.listaEstudiantes.values()) {
                 System.out.println(estudiante.toString());
+                ver = true;
             }
-            return;
         }
         System.out.println("Actualmente no existen estudiantes, por favor registre al menos uno");
+        return ver;
     }
 
     public void modificarEstudianteBasico(Estudiante estudiante, String nuevaContrasenna, String nuevoNombre, String nuevaCarrera){
@@ -69,7 +71,7 @@ public class ControladorEstudiante {
         if (buscarEstudiante(estudiante.getUsuario()) != null) {
             System.out.println("Estudiante encontrado! ");
             System.out.println(estudiante.toString());
-            // this.listaClientes.remove(this.listaClientes.indexOf(cliente));
+            IGlobalController.controladorGeneral.getUsuarios().remove(estudiante.getUsuario());
             this.listaEstudiantes.remove(estudiante.getUsuario());
             System.out.println("El estudiante ha sido eliminado con exito! ");
         }
@@ -77,4 +79,20 @@ public class ControladorEstudiante {
             System.out.println("El estudiante no existe, intente nuevamente");
         }
     }
+
+    public void actualizarEstudiante(Estudiante estudiante, String nombre, String usuario, String correo){
+        if (buscarEstudiante(estudiante.getUsuario()) != null) {
+            System.out.println("Estudiante encontrado!");
+            System.out.println(estudiante.toString());
+            estudiante.setNombre(nombre);
+            estudiante.setUsuario(usuario);
+            estudiante.setCorreo(correo);
+            System.out.println("Los datos actualizados del estudiante son: ");
+
+        }
+        else{
+            System.out.println("El estudiante no existe, intente nuevamente");
+        }
+    }
+
 }
